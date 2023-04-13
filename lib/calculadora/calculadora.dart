@@ -19,6 +19,7 @@ class _CalculadoraState extends State<Calculadora> {
           numero = '0';
         });
         break;
+
       case 'del':
         op = tecla;
         setState(() {
@@ -26,8 +27,30 @@ class _CalculadoraState extends State<Calculadora> {
             numero = numero.substring(0, numero.length - 1);
           }
         });
-
         break;
+
+      case '.':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+      case '0':
+        setState(() {
+          numero += tecla;
+          if (numero.contains('.')) {
+            return;
+          } else {
+            int numIt = int.parse(numero);
+            numero = numIt.toString();
+          }
+        });
+        break;
+
       case '/':
       case '*':
       case '+':
@@ -79,30 +102,9 @@ class _CalculadoraState extends State<Calculadora> {
         }
         break;
 
-      case '.':
-      case '1':
-      case '2':
-      case '3':
-      case '4':
-      case '5':
-      case '6':
-      case '7':
-      case '8':
-      case '9':
-      case '0':
-        setState(() {
-          numero += tecla;
-          if (numero.contains('.')) {
-            return;
-          } else {
-            int numIt = int.parse(numero);
-            numero = numIt.toString();
-          }
-        });
-        break;
       default:
         numero += tecla;
-        break;
+      break;
     }
   }
 
